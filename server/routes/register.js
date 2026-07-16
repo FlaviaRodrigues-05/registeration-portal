@@ -109,19 +109,16 @@ router.post("/", async (req, res) => {
 
     }
 
-    catch (error) {
+   catch(error){
 
-        console.log(error);
+    console.error("FULL ERROR:", error);
 
-        res.status(500).json({
+    res.status(500).json({
+        success:false,
+        message:error.message
+    });
 
-            success: false,
-
-            message: "Google Sheets Error"
-
-        });
-
-    }
+}
 
 });
 
