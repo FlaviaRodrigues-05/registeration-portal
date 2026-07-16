@@ -17,10 +17,10 @@ router.post("/", async (req, res) => {
             category,
             reason
         } = req.body;
-
+        console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID);
         await sheets.spreadsheets.values.append({
 
-            console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID),
+            spreadsheetId: process.env.SPREADSHEET_ID,
 
             range: "Sheet1!A:H",
 
