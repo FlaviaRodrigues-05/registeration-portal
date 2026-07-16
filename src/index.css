@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing:border-box;
+
+}
+
+html{
+   scroll-behavior: smooth;
+}
+
+body{
+  font-family: "Poppins" , sans-serif;
+  color:white;
+  background: 
+   radial-gradient(circle at top left, rgba(139,92,246,0.25), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(168,85,247,0.2), transparent 30%),
+    #09090F;
+    min-height:100vh;
+
+}
+
+a{
+  text-decoration:none;
+  color: white;
+}
+
+button{
+  cursor:pointer;
+  font-family: inherit;
+
+}
+
+.conatiner{
+  width: 90%;
+  max-width: 120px;
+  margin: auto;
+}
+
+.glass{
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  border-radius:20px;
+
+}
+
+.primary-btn{
+  background:linear-gradient(90deg,#8B5CF6,#A855F7);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius:30px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.primary-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(168,85,247,.5);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0d0b18;
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:-250px;
+    left:-200px;
+    width:600px;
+    height:600px;
+    background:#7b3cff;
+    filter:blur(220px);
+    opacity:.25;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    bottom:-250px;
+    right:-200px;
+    width:600px;
+    height:600px;
+    background:#5b2be0;
+    filter:blur(220px);
+    opacity:.18;
+    z-index:-1;
+}
