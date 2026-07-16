@@ -1,6 +1,3 @@
-const dns = require("dns");
-dns.setDefaultResultOrder("ipv4first");
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -14,8 +11,8 @@ app.use(express.json());
 
 app.use("/api/register", registerRoute);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on ${PORT}`);
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
