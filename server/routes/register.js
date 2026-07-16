@@ -18,6 +18,7 @@ router.post("/", async (req, res) => {
             reason
         } = req.body;
         console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID);
+        console.log("EMAIL_USER =", process.env.EMAIL_USER);
         await sheets.spreadsheets.values.append({
 
             spreadsheetId: process.env.SPREADSHEET_ID,
