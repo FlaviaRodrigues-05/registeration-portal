@@ -17,10 +17,7 @@ router.post("/", async (req, res) => {
       reason,
     } = req.body;
 
-    console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID);
-    console.log("EMAIL_USER:", process.env.EMAIL_USER);
-
-    // Save to Google Sheets
+    // Save data to Google Sheets
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
       range: "Sheet1!A:H",
@@ -39,21 +36,29 @@ router.post("/", async (req, res) => {
       },
     });
 
-    // Send confirmation email
-    try {
-      await transporter.sendMail({
+    
+    res.json({
+      success: true,
+      message: "Registration Successful!",
+    });
+
+    transporter
+      .sendMail({
         from: `"ATS Annual Talent Search" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: "ATS Annual Talent Search Registration Confirmation",
         html: `
-          <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:20px;background:#f8f8ff;border-radius:10px;">
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background: #f8f8ff; border-radius: 10px;">
             <h2 style="color:#6C3BFF;">🎭 ATS Annual Talent Search</h2>
 
             <p>Hello <strong>${name}</strong>,</p>
 
-            <p>Thank you for registering for the <strong>ATS Annual Talent Search</strong>.</p>
+            <p>
+              Thank you for registering for the
+              <strong>ATS Annual Talent Search</strong>.
+            </p>
 
-            <table style="border-collapse:collapse;width:100%;">
+            <table style="border-collapse: collapse; width: 100%;">
               <tr>
                 <td><strong>Category</strong></td>
                 <td>${category}</td>
@@ -82,25 +87,21 @@ router.post("/", async (req, res) => {
               <strong>Reporting Time:</strong> 9:30 AM
             </p>
 
-            <p>We look forward to seeing you at the event.</p>
+            <p>We look forward to seeing you at the event!</p>
 
             <br>
 
             <p><strong>ATS Organizing Team</strong></p>
           </div>
         `,
+      })
+      .then(() => {
+        console.log("Confirmation email sent.");
+      })
+      .catch((err) => {
+        console.error(" Email Error:", err.message);
       });
 
-      console.log("✅ Email sent successfully");
-    } catch (mailError) {
-      // Don't fail the registration if email fails
-      console.error("❌ Email Error:", mailError.message);
-    }
-
-    return res.json({
-      success: true,
-      message: "Registration Successful!",
-    });
   } catch (error) {
     console.error("FULL ERROR:", error);
 
