@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+console.log("Spreadsheet ID:", process.env.SPREADSHEET_ID);
+console.log("Email User:", process.env.EMAIL_USER);
 
 const registerRoute = require("./routes/register");
 
