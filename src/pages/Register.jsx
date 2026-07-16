@@ -28,7 +28,7 @@ function Register() {
 
   try {
     const response = await axios.post(
-      "https://registeration-portal.onrender.com",
+      "https://registeration-portal.onrender.com/api/register",
       formData
     );
 
